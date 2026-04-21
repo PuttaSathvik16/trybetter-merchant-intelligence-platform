@@ -324,7 +324,7 @@ trybetter-merchant-dashboard/
 
 ## How I Built This — Step by Step
 
-This project was built using **[Cursor AI](https://cursor.sh/)** (IDE with built-in AI) following a structured prompt-driven development workflow. Every component, utility, and page was built with deliberate, targeted prompts rather than asking the AI to generate everything at once.
+This project was built using Visual studio following a structured prompt-driven development workflow. Every component, utility, and page was built with deliberate.
 
 ### Phase 1 — Project Initialization
 
@@ -340,11 +340,6 @@ npm install -D tailwindcss postcss autoprefixer gh-pages
 # 3. Initialize Tailwind CSS
 npx tailwindcss init -p
 ```
-
-**Cursor prompt used for Tailwind config:**
-
-> "Configure tailwind.config.js for a React Vite project. Add TryBetter brand colors: primary purple #7C3AED, hover purple #6D28D9, accent green #16A34A, light green #DCFCE7, light purple #F3F0FF, background #F8F7FF, card white, border #E5E7EB. Add Plus Jakarta Sans and Inter as font families."
-
 ---
 
 ### Phase 2 — Data Layer & Mock Data
@@ -357,27 +352,11 @@ Created three mock data files and processor rates configuration before writing a
 - `src/data/mockTransactions.js` — 50 realistic transactions across 10 merchants
 - `src/data/mockMerchants.js` — 12 merchant profiles with health scores and churn risk
 
-**Cursor prompt used:**
-
-> "Generate a JavaScript array of 50 mock payment transactions. Each transaction should have: id, date (last 90 days), amount ($10–$500), merchantName (10 real-sounding businesses from restaurant/retail/medical), category, status (completed 80% / refunded 10% / disputed 10%), paymentMethod (card/contactless/online/ach), processorFee (0 — TryBetter), hour (0–23), dayOfWeek (0–6)."
-
 ---
 
 ### Phase 3 — Data Engineering Pipeline
 
 This is the core data engineering work. Four JavaScript modules were built to simulate a production ETL pipeline.
-
-**Cursor prompt used for ETL processor:**
-
-> "Build a JavaScript ETL pipeline module. Export: extractTransactions(rawData) that validates required fields and separates passed/failed records. transformTransactions(data) that normalizes dates to ISO, maps categories to business labels, calculates fee_saved as volume*0.029+0.30, and adds day_of_week, hour_of_day, is_weekend derived fields. loadTransactions(rawData) that runs both stages and returns data + pipeline_summary with record counts, run time, and status."
-
-**Cursor prompt used for anomaly detector:**
-
-> "Build a JavaScript anomaly detection module. Export: detectHighValueOutliers(transactions) using 2 standard deviations above mean. detectOffHoursActivity(transactions) flagging hours 23–5. detectVelocitySpikes(transactions) flagging merchants at 3x daily average. Each function returns an array with transactionId, merchant, amount, anomalyType, riskScore 0-100, and reason string."
-
-**Cursor prompt used for stats engine:**
-
-> "Write a statistical analysis module. Export: calculateDescriptiveStats(values) returning mean, median, std_dev, min, max, q25, q75, count. buildTimeSeriesData(transactions, months) returning last N months volume aggregated by month. calculateCorrelation(xArray, yArray) as Pearson correlation coefficient."
 
 ---
 
@@ -397,23 +376,12 @@ formatDate(s)         // Apr 20, 2024
 formatPercent(n)      // +12.4%
 ```
 
-**Cursor prompt used:**
-
-> "Write a feeCalculator.js utility. calculateFees(volume, avgTicket, processorKey) calculates monthly fees using rates from processorRates.js — transactions = round(volume/avgTicket), fee = (volume * percentageFee) + (transactions * flatFee). calculateSavings(volume, avgTicket) returns fees for all processors plus maxSavings and annualSavings. Round all values to 2 decimal places."
-
 ---
 
 ### Phase 5 — Layout & UI Components
 
 Built the application shell before any page content.
 
-**Cursor prompt used for Sidebar:**
-
-> "Build a React sidebar for a payment analytics dashboard using TryBetter brand colors. White background, 1px right border #E5E7EB. TryBetter logo top with purple hex icon. Navigation links for Dashboard, Analytics, Data Pipeline, Savings Calculator, Transactions, Merchant Health, Reports using lucide-react icons. Active state: purple left border #7C3AED, purple text, light purple background #F3F0FF. Use react-router-dom NavLink."
-
-**Cursor prompt used for StatCard:**
-
-> "Build a React StatCard component. Props: title, value, change (number), changeLabel, icon, accentColor. White card, 1px border #E5E7EB, border-radius 14px, card-shadow. Colored icon circle top-right. Large value in Plus Jakarta Sans bold. Positive change = green arrow, negative = red arrow."
 
 ---
 
@@ -421,63 +389,15 @@ Built the application shell before any page content.
 
 All charts use **Recharts** with TryBetter brand colors applied consistently.
 
-**Cursor prompt used for Revenue Line Chart:**
-
-> "Build a Recharts LineChart showing 6-month transaction volume. Dark theme: transparent background, grid lines #F3F4F6, axis text #9CA3AF, line color #7C3AED with gradient area fill from rgba(124,58,237,0.1) to transparent. Custom tooltip with white card style. Props: data array from buildTimeSeriesData."
-
-**Cursor prompt used for Savings Bar Chart:**
-
-> "Build a Recharts BarChart comparing monthly fees across Stripe, Square, PayPal, TryBetter for given volume and avgTicket. Calculate fees using feeCalculator. TryBetter bar green #16A34A, others in gray shades. Value labels above bars. White background, #F3F4F6 grid lines."
-
-**Cursor prompt used for Transaction Heatmap:**
-
-> "Build a transaction volume heatmap: day of week (rows) × hour of day (columns). Generate mock data with lunch (11am–2pm) and dinner (6pm–9pm) peaks on weekdays. Green color scale from rgba(124,58,237,0.05) to rgba(124,58,237,0.9). 28px cells. Day labels left, hour labels top every 3 hours."
-
 ---
 
-### Phase 7 — Widgets
-
-**Cursor prompt used for Savings Calculator widget:**
-
-> "Build a React savings calculator. State: monthlyVolume slider 5000–500000, avgTicket slider 5–500, bizType selector with presets (Restaurant: $50K/$45, Retail: $80K/$75, Ecommerce: $120K/$95, Medical: $200K/$180). Show 3 result cards (Stripe, Square, TryBetter) with fees calculated live from feeCalculator.js. Large monthly savings amount. Annual breakdown table. Purple #7C3AED primary, green #16A34A for TryBetter winner card."
-
-**Cursor prompt used for Merchant Health Score:**
-
-> "Build a React merchant health card. Props: merchant object. SVG circular arc showing score 0–100. Green arc for 80+, yellow 60–79, orange 40–59, red below 40. Show: business name, category badge, monthly volume, avg ticket, churn risk badge. Card shadow, white background, 14px border-radius."
-
-**Cursor prompt used for Chargeback Alert widget:**
-
-> "Build a React chargeback alerts list. Show 5 transactions flagged by anomalyDetector.js with highest risk scores. Each row: merchant name, amount, risk level badge (High/Medium), anomaly type, Resolve button. Red left border accent on High Risk items. White card."
-
----
-
-### Phase 8 — Pages
+### Phase 7 - Pages
 
 Each page follows the same pattern: import data → run pipeline/aggregation functions → pass results to chart and widget components.
 
-**Cursor prompt used for Dashboard:**
-
-> "Build the main Dashboard page. Grid layout: Row 1 — 4 StatCards (Total Volume, Active Merchants, Savings vs Stripe, Chargeback Rate). Row 2 — RevenueLineChart (2/3 width) + ProcessorPieChart (1/3). Row 3 — RecentTransactions (2/3) + ChargebackAlert (1/3). Row 4 — TransactionHeatmap full width. TryBetter brand colors throughout."
-
-**Cursor prompt used for Data Pipeline page:**
-
-> "Build a Data Pipeline Monitor page. Run loadTransactions from etlProcessor.js on mockTransactions data. Display: 4 stat cards (total records, passed, failed, run time). ETL flow diagram: 3 connected boxes EXTRACT → TRANSFORM → LOAD with counts and status. Data quality table per field (null count, type errors, status badge). Recent runs table with 5 mock entries showing timestamps, record counts, duration, and status."
-
-**Cursor prompt used for Analytics page:**
-
-> "Build Analytics page. Run calculateDescriptiveStats on transaction amounts from statsEngine.js. Display stats table (mean, median, std dev, quartiles). Run all three anomaly detection functions from anomalyDetector.js and show results in a table with Risk Score column. Run aggregateByCategory from aggregator.js and show horizontal bar chart. Show correlation between amount and hour with plain English interpretation."
-
 ---
 
-### Phase 9 — Routing & App Entry
-
-**Cursor prompt used:**
-
-> "Build App.jsx for React Router v6. Routes: / → Dashboard, /analytics → Analytics, /pipeline → DataPipeline, /calculator → SavingsCalculator, /transactions → Transactions, /health → MerchantHealth, /reports → Reports. Wrap in BrowserRouter with Layout component. Import all pages."
-
----
-
-### Phase 10 — Deploy to GitHub Pages
+### Phase 8 — Deploy to GitHub Pages
 
 ```bash
 # Add gh-pages to package.json scripts
