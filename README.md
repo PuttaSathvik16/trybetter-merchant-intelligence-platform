@@ -552,7 +552,7 @@ This project delivers exactly that — built in their brand, using their actual 
 
 ## About This Project
 
-Built by **[Your Name]** as a portfolio project targeting a Data Analyst / Data Engineering role at TryBetter (Better Payments). The project demonstrates:
+Built by **Sathvik Putta** as a portfolio project targeting a Data Analyst / Data Engineering role at TryBetter (Better Payments). The project demonstrates:
 
 - End-to-end data pipeline design (Extract, Transform, Load)
 - Statistical analysis and anomaly detection on financial data
