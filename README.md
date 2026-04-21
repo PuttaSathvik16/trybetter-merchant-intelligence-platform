@@ -58,12 +58,16 @@ Main Dashboard
 
 ### Analytics — Statistical Analysis & Anomaly Detection
 
+<img width="1280" height="900" alt="analytics" src="https://github.com/user-attachments/assets/d2a48ecb-8814-428e-b263-0a2b5578c093" />
+
 Analytics Page
 *Descriptive statistics (mean, median, std dev, quartiles) on transaction amounts. Volume by merchant category. Anomaly detection results table flagging high-value outliers and off-hours activity with risk scores.*
 
 ---
 
 ### Savings Calculator — Embeddable Widget
+
+<img width="1280" height="900" alt="calculator" src="https://github.com/user-attachments/assets/504cc89c-bda7-4319-a10f-cf136f7745b0" />
 
 Savings Calculator
 *Live fee comparison across Stripe, Square, and TryBetter. Business-type presets (Restaurant, Retail, E-commerce, Medical) auto-fill realistic volume and ticket defaults. Shows monthly and annual savings dynamically.*
@@ -72,6 +76,8 @@ Savings Calculator
 
 ### Data Pipeline Monitor — ETL Dashboard
 
+<img width="1280" height="900" alt="dashboard" src="https://github.com/user-attachments/assets/0256ffb4-b8af-4e04-99a3-99ccb445ff56" />
+
 Data Pipeline
 *Simulates a real Extract → Transform → Load pipeline with record counts, pass/fail validation, data quality field-by-field breakdown, and a pipeline run history log with status badges.*
 
@@ -79,12 +85,16 @@ Data Pipeline
 
 ### Merchant Health Scores — Churn Risk Intelligence
 
+<img width="1280" height="900" alt="merchant_health" src="https://github.com/user-attachments/assets/4294f777-579f-43d9-96b8-42d99ec5f505" />
+
 Merchant Health
 *Health score cards (0–100) for every merchant with color-coded risk classification (Excellent / Good / At Risk / Critical), churn risk badges, and filterable views.*
 
 ---
 
 ## Data Engineering Highlights
+
+<img width="1280" height="900" alt="pipeline" src="https://github.com/user-attachments/assets/b651a097-83ca-41cb-995c-9b3547632816" />
 
 This is the section that makes this project different from a standard frontend build. The data pipeline layer mirrors what a real data engineer would build on top of a payment processing system.
 
