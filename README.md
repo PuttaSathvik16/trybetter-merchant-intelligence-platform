@@ -560,7 +560,7 @@ Built by **Sathvik Putta** as a portfolio project targeting a Data Analyst / Dat
 - Frontend implementation of data engineering concepts
 - Deep research into TryBetter's actual product gaps and business model
 
-**Tools used:** Cursor AI (IDE), React, Vite, Tailwind CSS, Recharts, Lucide React, GitHub Pages
+**Tools used:** visual studio, (IDE), React, Vite, Tailwind CSS, Recharts, Lucide React, GitHub Pages
 
 ---
 
